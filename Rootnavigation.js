@@ -2,15 +2,15 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import FirstScreen from "./FirstScreen";
-import SignInScreen from "./SignInScreen";
-import SignUpScreen from "./SignUpScreen";
-import DashScreen from "./DashScreen";
-import Dashboard from "./Dashboard";
-import Pickup from "./Pickup";
-import Support from "./Support";
-import Account from "./Account";
-import DriverScreen from "./DriverScreen";
-import Logout from "./Logout";
+// import SignInScreen from "./SignInScreen";
+// import SignUpScreen from "./SignUpScreen";
+// import DashScreen from "./DashScreen";
+// import Dashboard from "./Dashboard";
+// import Pickup from "./Pickup";
+// import Support from "./Support";
+// import Account from "./Account";
+// import DriverScreen from "./DriverScreen";
+// import Logout from "./Logout";
 
 /**
  * create stack navigator to navigate between the screen in the app
@@ -29,7 +29,7 @@ const Rootnavigation = ({ navigation }) => (
       component={FirstScreen}
       options={{ headerLeft: null, headerShown: false }}
     />
-    <RootStack.Screen
+    {/* <RootStack.Screen
       name="SignInScreen"
       component={SignInScreen}
       options={{ headerLeft: null, headerShown: false }}
@@ -59,7 +59,7 @@ const Rootnavigation = ({ navigation }) => (
       component={Logout}
       options={{ headerLeft: null, headerShown: false }}
     />
-    <RootStack.Screen name="Support" component={Support} />
+    <RootStack.Screen name="Support" component={Support} /> */}
   </RootStack.Navigator>
 );
 
