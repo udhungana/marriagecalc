@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
-import Assets from "./components/Assets";
+//import Assets from "./components/Assets";
 
 /**
  *
@@ -27,9 +27,9 @@ const FirstScreen = ({ navigation }) => {
         backgroundColor: "white",
       }}
     >
-      <View>
+      {/* <View>
         <Assets />
-      </View>
+      </View> */}
       <Text style={styles.innertext}>Pick Bins</Text>
     </View>
   );
