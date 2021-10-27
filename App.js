@@ -1,13 +1,15 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+
+import Rootnavigation from "./Rootnavigation";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Marriage Calculator Under Construction ft Rajan & Utsav!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Rootnavigation />
+    </NavigationContainer>
   );
 }
 
