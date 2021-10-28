@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import GameSettings from "./GameSettings";
 //import Assets from "./components/Assets";
+import FirstScreen from "./FirstScreen";
 
 /**
  *
  * This is the first splash scree showing pickbins logout. Timout for showing this screen is set to 2s.
  */
-const FirstScreen = ({ navigation }) => {
+const GameSettings = ({ navigation }) => {
   // <View style={styles.container}>
   //   <Text>FirstScreen</Text>
   // </View>;
@@ -39,7 +39,7 @@ const FirstScreen = ({ navigation }) => {
           alignContent: "center",
         }}
       >
-        <Text style={styles.toptext}>Marriage Calculator</Text>
+        {/* <Text style={styles.toptext}>Marriage Calculator</Text> */}
       </View>
       <View
         style={{
@@ -50,12 +50,7 @@ const FirstScreen = ({ navigation }) => {
         }}
       >
         <TouchableOpacity style={styles.buttons}>
-          <Text
-            style={styles.buttontext}
-            onPress={navigation.navigate("GameSettings")}
-          >
-            Start Game
-          </Text>
+          <Text style={styles.buttontext}>Start Game</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttons}>
@@ -65,7 +60,7 @@ const FirstScreen = ({ navigation }) => {
     </View>
   );
 };
-export default FirstScreen;
+export default GameSettings;
 
 const styles = StyleSheet.create({
   container: {

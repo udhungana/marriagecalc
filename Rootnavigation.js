@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import FirstScreen from "./FirstScreen";
-// import SignInScreen from "./SignInScreen";
+import GameSettings from "./GameSettings";
 // import SignUpScreen from "./SignUpScreen";
 // import DashScreen from "./DashScreen";
 // import Dashboard from "./Dashboard";
@@ -23,17 +23,18 @@ const RootStack = createStackNavigator();
  */
 
 const Rootnavigation = ({ navigation }) => (
-  <RootStack.Navigator>
+  <RootStack.Navigator initialRouteName="FirstScreen">
     <RootStack.Screen
       name="FirstScreen"
       component={FirstScreen}
       options={{ headerLeft: null, headerShown: false }}
     />
-    {/* <RootStack.Screen
-      name="SignInScreen"
-      component={SignInScreen}
-      options={{ headerLeft: null, headerShown: false }}
+    <RootStack.Screen
+      name="Settings"
+      component={GameSettings}
+      options={{ headerShown: true }}
     />
+    {/*
     <RootStack.Screen
       name="SignUpScreen"
       component={SignUpScreen}
