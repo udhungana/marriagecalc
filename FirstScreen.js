@@ -1,25 +1,16 @@
 import React, { useEffect } from "react";
-import { Button, View, Text, StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import GameSettings from "./GameSettings";
+import { Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 //import Assets from "./components/Assets";
+import GameSettings from "./GameSettings";
 
 /**
  *
  * This is the first splash scree showing pickbins logout. Timout for showing this screen is set to 2s.
  */
 const FirstScreen = ({ navigation }) => {
-  // <View style={styles.container}>
-  //   <Text>FirstScreen</Text>
-  // </View>;
-
-  // useEffect(() => {
-  //   console.log("once");
-  //   setTimeout(() => {
-  //     navigation.navigate("SignInScreen");
-  //   }, 2000);
-  // }, []);
-
+  const startGamePressed = () => {
+    navigation.navigate("GameSettings");
+  };
   return (
     <View
       style={[
@@ -49,14 +40,13 @@ const FirstScreen = ({ navigation }) => {
           marginTop: 80,
         }}
       >
-        <TouchableOpacity style={styles.buttons}>
-          <Text
-            style={styles.buttontext}
-            onPress={navigation.navigate("GameSettings")}
-          >
-            Start Game
-          </Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity style={styles.buttons}>
+            <Text style={styles.buttontext} onPress={() => startGamePressed()}>
+              Start Game
+            </Text>
+          </TouchableOpacity>
+        </View>
 
         <TouchableOpacity style={styles.buttons}>
           <Text style={styles.buttontext}>Continue Game</Text>

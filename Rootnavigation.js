@@ -23,16 +23,16 @@ const RootStack = createStackNavigator();
  */
 
 const Rootnavigation = ({ navigation }) => (
-  <RootStack.Navigator initialRouteName="FirstScreen">
+  <RootStack.Navigator>
     <RootStack.Screen
       name="FirstScreen"
       component={FirstScreen}
       options={{ headerLeft: null, headerShown: false }}
     />
     <RootStack.Screen
-      name="Settings"
+      name="GameSettings"
       component={GameSettings}
-      options={{ headerShown: true }}
+      options={{ headerLeft: null, headerShown: false }}
     />
     {/*
     <RootStack.Screen
