@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Switch, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { TextInput } from "react-native-gesture-handler";
 
@@ -21,6 +21,9 @@ const GameSettings = ({ navigation }) => {
     { label: "5", value: "5" },
     { label: "6", value: "6" },
   ]);
+
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   // <View style={styles.container}>
   //   <Text>FirstScreen</Text>
   // </View>;
@@ -85,7 +88,13 @@ const GameSettings = ({ navigation }) => {
             <Text style={styles.settingtext}>Foul Point: </Text>
           </View>
           <View style={{ flex: 1 }}>
-            <TextInput style={styles.textinput} />
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitchFP}
+              value={isEnabled}
+            />
           </View>
         </View>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -93,15 +102,12 @@ const GameSettings = ({ navigation }) => {
             <Text style={styles.settingtext}>Doublee: </Text>
           </View>
           <View style={{ flex: 1 }}>
-            <DropDownPicker
-              listMode="SCROLLVIEW"
-              style={styles.Dropdowntext}
-              open={open}
-              value={value}
-              items={items}
-              setOpen={setOpen}
-              setValue={setValue}
-              setItems={setItems}
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitchDB}
+              value={isEnabled}
             />
           </View>
         </View>
