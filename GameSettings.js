@@ -4,7 +4,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { TextInput } from "react-native-gesture-handler";
 
 //import Assets from "./components/Assets";
-import FirstScreen from "./FirstScreen";
+//import FirstScreen from "./FirstScreen";
 
 /**
  *
@@ -22,8 +22,13 @@ const GameSettings = ({ navigation }) => {
     { label: "6", value: "6" },
   ]);
 
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [isEnabledFoul, setIsEnabledFoul] = useState(false);
+  const toggleSwitchFoul = () =>
+    setIsEnabledFoul((previousState) => !previousState);
+
+  const [isEnabledDoublee, setIsEnabledDoublee] = useState(false);
+  const toggleSwitchDoublee = () =>
+    setIsEnabledDoublee((previousState) => !previousState);
   // <View style={styles.container}>
   //   <Text>FirstScreen</Text>
   // </View>;
@@ -90,10 +95,10 @@ const GameSettings = ({ navigation }) => {
           <View style={{ flex: 1 }}>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              thumbColor={isEnabledFoul ? "#f5dd4b" : "#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitchFP}
-              value={isEnabled}
+              onValueChange={toggleSwitchFoul}
+              value={isEnabledFoul}
             />
           </View>
         </View>
@@ -104,10 +109,10 @@ const GameSettings = ({ navigation }) => {
           <View style={{ flex: 1 }}>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              thumbColor={isEnabledDoublee ? "#f5dd4b" : "#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitchDB}
-              value={isEnabled}
+              onValueChange={toggleSwitchDoublee}
+              value={isEnabledDoublee}
             />
           </View>
         </View>

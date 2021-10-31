@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 //import Assets from "./components/Assets";
-import GameSettings from "./GameSettings";
+//import GameSettings from "./GameSettings";
 
 /**
  *
