@@ -11,6 +11,9 @@ const FirstScreen = ({ navigation }) => {
   const startGamePressed = () => {
     navigation.navigate("GameSettings");
   };
+  const continueGamePressed = () => {
+    //navigation.navigate("GameSettings");
+  };
   return (
     <View
       style={[
@@ -23,28 +26,29 @@ const FirstScreen = ({ navigation }) => {
       {/* <View>
         <Assets />
       </View> */}
-      <View
+      {/* <View
         style={{
-          flex: 1,
+          flex: 0.8,
           backgroundColor: "#ff6347",
           alignContent: "center",
         }}
       >
         <Text style={styles.toptext}>Marriage Calculator</Text>
-      </View>
+      </View> */}
       <View
         style={{
           flex: 7,
           backgroundColor: "white",
           alignItems: "center",
-          marginTop: 80,
+          marginTop: 40,
         }}
       >
         <View>
-          <TouchableOpacity style={styles.buttons}>
-            <Text style={styles.buttontext} onPress={() => startGamePressed()}>
-              Start Game
-            </Text>
+          <TouchableOpacity
+            style={styles.buttons}
+            onPress={() => startGamePressed()}
+          >
+            <Text style={styles.buttontext}>Start Game</Text>
           </TouchableOpacity>
         </View>
 
@@ -62,7 +66,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     padding: 5,
-    marginTop: 40,
     backgroundColor: "white",
   },
   toptext: {

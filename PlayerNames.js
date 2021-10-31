@@ -18,7 +18,7 @@ import { TextInput } from "react-native-gesture-handler";
  *
  * This is the first splash scree showing pickbins logout. Timout for showing this screen is set to 2s.
  */
-const GameSettings = ({ navigation }) => {
+const PlayerNames = ({ navigation }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -49,7 +49,7 @@ const GameSettings = ({ navigation }) => {
   // }, []);
 
   const nextButtonPressed = () => {
-    navigation.navigate("PlayerNames");
+    navigation.navigate("InsertPoint");
   };
 
   return (
@@ -74,65 +74,13 @@ const GameSettings = ({ navigation }) => {
       >
         <Text style={styles.toptext}>Game Setting</Text>
       </View> */}
-      <View style={{ flex: 5, marginBottom: 10, marginTop: 30 }}>
+      <View style={{ flex: 5, marginBottom: 10, marginTop: 50 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.settingtext}>Number of Player: </Text>
+            <Text style={styles.settingtext}>PLAYER X: </Text>
           </View>
           <View style={{ flex: 1 }}>
-            <DropDownPicker
-              listMode="SCROLLVIEW"
-              placeholder="5"
-              open={open}
-              value={value}
-              items={items}
-              setOpen={setOpen}
-              setValue={setValue}
-              setItems={setItems}
-              maxHeight={300}
-              containerStyle={styles.Dropdowntext}
-            />
-          </View>
-        </View>
-
-        <View style={{ flex: 1, flexDirection: "row", zIndex: -5 }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.settingtext}>Point Rate: </Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <TextInput keyboardType="numeric" style={styles.textinput} />
-          </View>
-        </View>
-
-        <View style={{ flex: 1, flexDirection: "row", zIndex: -5 }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.settingtext}>Foul Point: </Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isEnabledFoul ? "#f5dd4b" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitchFoul}
-              value={isEnabledFoul}
-              style={{ alignSelf: "center" }}
-            />
-          </View>
-        </View>
-
-        <View style={{ flex: 1, flexDirection: "row", zIndex: -5 }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.settingtext}>Doublee: </Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isEnabledDoublee ? "#f5dd4b" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitchDoublee}
-              value={isEnabledDoublee}
-              style={{ alignSelf: "center" }}
-            />
+            <TextInput keyboardType="default" style={styles.textinput} />
           </View>
         </View>
       </View>
@@ -160,7 +108,7 @@ const GameSettings = ({ navigation }) => {
     </ScrollView>
   );
 };
-export default GameSettings;
+export default PlayerNames;
 
 const styles = StyleSheet.create({
   container: {
@@ -191,8 +139,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     color: "black",
-    alignSelf: "center",
-    width: 80,
+    alignItems: "center",
+    padding: 20,
+    height: 70,
   },
   buttons: {
     fontSize: 20,
@@ -219,7 +168,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
-    alignSelf: "center",
-    width: 80,
   },
 });
