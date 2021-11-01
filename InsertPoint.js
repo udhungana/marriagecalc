@@ -225,13 +225,15 @@ const styles = StyleSheet.create({
     width: 100,
   },
   onePicker: {
-    height: 100,
+    height: 88,
     width: 150,
     alignSelf: "center",
     color: "#ff6347",
+    borderWidth: 5,
+    borderColor: "black",
   },
   onePickerItem: {
-    height: 100,
+    height: 120,
     color: "#ff6347",
     width: 200,
     alignSelf: "center",
