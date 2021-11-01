@@ -5,7 +5,7 @@ import FirstScreen from "./FirstScreen";
 import GameSettings from "./GameSettings";
 import PlayerNames from "./PlayerNames";
 import InsertPoint from "./InsertPoint";
-// import SignUpScreen from "./SignUpScreen";
+import Scoresheet from "./Scoresheet";
 // import DashScreen from "./DashScreen";
 // import Dashboard from "./Dashboard";
 // import Pickup from "./Pickup";
@@ -65,12 +65,13 @@ const Rootnavigation = ({ navigation }) => (
       component={InsertPoint}
       options={{ title: "Insert Points" }}
     />
-    {/*
+
     <RootStack.Screen
-      name="Pickup"
-      component={Pickup}
-      options={{ headerLeft: null, headerShown: false }}
+      name="Scoresheet"
+      component={Scoresheet}
+      options={{ title: "Score Sheet" }}
     />
+    {/*
     <RootStack.Screen
       name="DriverScreen"
       component={DriverScreen}
