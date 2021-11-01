@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { TextInput } from "react-native-gesture-handler";
+import { Picker } from "@react-native-picker/picker";
 
 //import Assets from "./components/Assets";
 //import FirstScreen from "./FirstScreen";
@@ -48,6 +49,8 @@ const GameSettings = ({ navigation }) => {
   //   }, 2000);
   // }, []);
 
+  const [selectedNumPlayers, setSelectedNumPlayers] = useState();
+
   const nextButtonPressed = () => {
     navigation.navigate("PlayerNames");
   };
@@ -75,12 +78,18 @@ const GameSettings = ({ navigation }) => {
         <Text style={styles.toptext}>Game Setting</Text>
       </View> */}
       <View style={{ flex: 5, marginBottom: 10, marginTop: 30 }}>
-        <View style={{ flex: 1, flexDirection: "row" }}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignContent: "center",
+          }}
+        >
           <View style={{ flex: 1 }}>
             <Text style={styles.settingtext}>Number of Player: </Text>
           </View>
           <View style={{ flex: 1 }}>
-            <DropDownPicker
+            {/* <DropDownPicker
               listMode="SCROLLVIEW"
               placeholder="5"
               open={open}
@@ -91,24 +100,44 @@ const GameSettings = ({ navigation }) => {
               setItems={setItems}
               maxHeight={300}
               containerStyle={styles.Dropdowntext}
+              showTickIcon={false}
+            /> */}
+            <Picker
+              selectedValue={selectedNumPlayers}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedNumPlayers(itemValue)
+              }
+              style={styles.onePicker}
+              itemStyle={styles.onePickerItem}
+            >
+              <Picker.Item label="1" value="1" />
+              <Picker.Item label="2" value="2" />
+              <Picker.Item label="3" value="3" />
+              <Picker.Item label="4" value="4" />
+              <Picker.Item label="5" value="5" />
+              <Picker.Item label="6" value="6" />
+            </Picker>
+          </View>
+        </View>
+
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.settingtext}>Point Rate: </Text>
+          </View>
+          <View style={{ flex: 1, padding: 10 }}>
+            <TextInput
+              defaultValue="0.25"
+              keyboardType="numeric"
+              style={styles.textinput}
             />
           </View>
         </View>
 
-        <View style={{ flex: 1, flexDirection: "row", zIndex: -5 }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.settingtext}>Point Rate: </Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <TextInput keyboardType="numeric" style={styles.textinput} />
-          </View>
-        </View>
-
-        <View style={{ flex: 1, flexDirection: "row", zIndex: -5 }}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
           <View style={{ flex: 1 }}>
             <Text style={styles.settingtext}>Foul Point: </Text>
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, padding: 20 }}>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={isEnabledFoul ? "#f5dd4b" : "#f4f3f4"}
@@ -120,11 +149,11 @@ const GameSettings = ({ navigation }) => {
           </View>
         </View>
 
-        <View style={{ flex: 1, flexDirection: "row", zIndex: -5 }}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
           <View style={{ flex: 1 }}>
             <Text style={styles.settingtext}>Doublee: </Text>
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, padding: 20 }}>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={isEnabledDoublee ? "#f5dd4b" : "#f4f3f4"}
@@ -178,21 +207,22 @@ const styles = StyleSheet.create({
   },
   settingtext: {
     fontSize: 14,
-    flex: 3,
     fontWeight: "bold",
     textAlign: "left",
     color: "black",
     alignItems: "center",
-    padding: 20,
+    padding: 30,
+    width: 300,
   },
   Dropdowntext: {
     flex: 2,
     fontSize: 15,
     fontWeight: "bold",
-    textAlign: "center",
+    textAlign: "left",
+    alignItems: "center",
     color: "black",
     alignSelf: "center",
-    width: 80,
+    width: 150,
   },
   buttons: {
     fontSize: 20,
@@ -217,9 +247,20 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 12,
     borderWidth: 1,
-    padding: 10,
     borderRadius: 5,
     alignSelf: "center",
-    width: 80,
+    width: 130,
+    textAlign: "center",
+  },
+  onePicker: {
+    height: 88,
+    width: 150,
+    alignSelf: "center",
+  },
+  onePickerItem: {
+    height: 100,
+    color: "#ff6347",
+    width: 200,
+    alignSelf: "center",
   },
 });

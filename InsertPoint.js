@@ -8,9 +8,10 @@ import {
   ScrollView,
   SafeAreaView,
   Dimensions,
+  TextInput,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
-import { TextInput } from "react-native-gesture-handler";
+import { Picker } from "@react-native-picker/picker";
 
 //import Assets from "./components/Assets";
 //import FirstScreen from "./FirstScreen";
@@ -48,6 +49,8 @@ const InsertPoint = ({ navigation }) => {
   //   }, 2000);
   // }, []);
 
+  const [selectedChoice, setSelectedChoice] = useState();
+
   let screenHeight = Dimensions.get("window").height;
 
   return (
@@ -74,21 +77,25 @@ const InsertPoint = ({ navigation }) => {
        
         <Text style={styles.toptext}>Game Setting</Text>
       </View> */}
+        <View>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.roundNumber}>Round X: </Text>
+          </View>
+        </View>
 
-        <View style={{ flex: 8, marginBottom: 50, marginTop: 50 }}>
+        <View style={{ flex: 1, marginBottom: 50, marginTop: 30 }}>
           <View
             style={{
               flex: 1,
               flexDirection: "row",
               alignItems: "center",
-              height: 100,
             }}
           >
             <View style={{ flex: 1 }}>
               <Text style={styles.settingtext}>PLAYER X: </Text>
             </View>
-            <View style={{ flex: 1, zIndex: -5 }}>
-              <DropDownPicker
+            <View style={{ flex: 1 }}>
+              {/* <DropDownPicker
                 listMode="SCROLLVIEW"
                 placeholder="Unseen"
                 open={open}
@@ -99,10 +106,30 @@ const InsertPoint = ({ navigation }) => {
                 setItems={setItems}
                 maxHeight={400}
                 containerStyle={styles.Dropdowntext}
-              />
+                showTickIcon={false}
+              /> */}
+
+              <Picker
+                selectedValue={selectedChoice}
+                onValueChange={(itemValue, itemIndex) =>
+                  setSelectedChoice(itemValue)
+                }
+                style={styles.onePicker}
+                itemStyle={styles.onePickerItem}
+              >
+                <Picker.Item label="Unseen" value="Unseen" />
+                <Picker.Item label="Seen" value="Seen" />
+                <Picker.Item label="Winner" value="Winner" />
+                <Picker.Item label="Doublee" value="Doublee" />
+                <Picker.Item label="Foul" value="Foul" />
+              </Picker>
             </View>
             <View style={{ flex: 1 }}>
-              <TextInput keyboardType="numeric" style={styles.textinput} />
+              <TextInput
+                keyboardType="numeric"
+                style={styles.textinput}
+                placeholder="Point"
+              />
             </View>
           </View>
         </View>
@@ -113,7 +140,7 @@ const InsertPoint = ({ navigation }) => {
             backgroundColor: "white",
             alignItems: "center",
             alignContent: "center",
-            marginVertical: (screenHeight * 35) / 100,
+            marginVertical: 400,
           }}
         >
           <TouchableOpacity style={styles.buttons}>
@@ -148,6 +175,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "left",
+    color: "black",
+    alignItems: "center",
+    padding: 20,
+  },
+  roundNumber: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
     color: "black",
     alignItems: "center",
     padding: 20,
@@ -187,6 +222,18 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     alignSelf: "center",
-    width: 80,
+    width: 100,
+  },
+  onePicker: {
+    height: 100,
+    width: 150,
+    alignSelf: "center",
+    color: "#ff6347",
+  },
+  onePickerItem: {
+    height: 100,
+    color: "#ff6347",
+    width: 200,
+    alignSelf: "center",
   },
 });
