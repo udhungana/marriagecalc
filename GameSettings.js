@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
+  Platform,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { TextInput } from "react-native-gesture-handler";
@@ -38,6 +39,13 @@ const GameSettings = ({ navigation }) => {
   const [isEnabledDoublee, setIsEnabledDoublee] = useState(false);
   const toggleSwitchDoublee = () =>
     setIsEnabledDoublee((previousState) => !previousState);
+
+  const [playersNum, setplayersNum] = useState();
+  const [selectedNumPlayers, setSelectedNumPlayers] = useState();
+  const [pointRate, setpointRate] = useState();
+  console.log(pointRate);
+  console.log(selectedNumPlayers);
+
   // <View style={styles.container}>
   //   <Text>FirstScreen</Text>
   // </View>;
@@ -49,10 +57,10 @@ const GameSettings = ({ navigation }) => {
   //   }, 2000);
   // }, []);
 
-  const [selectedNumPlayers, setSelectedNumPlayers] = useState();
-
   const nextButtonPressed = () => {
-    navigation.navigate("PlayerNames");
+    navigation.navigate("PlayerNames", {
+      paramKey: selectedNumPlayers,
+    });
   };
 
   return (
@@ -77,16 +85,24 @@ const GameSettings = ({ navigation }) => {
       >
         <Text style={styles.toptext}>Game Setting</Text>
       </View> */}
-      <View style={{ flex: 5, marginBottom: 10, marginTop: 30 }}>
+      <View style={{ flex: 5, marginBottom: 10, marginTop: 30, padding: 5 }}>
         <View
           style={{
             flex: 1,
             flexDirection: "row",
             alignContent: "center",
+            marginBottom: 20,
           }}
         >
           <View style={{ flex: 1 }}>
-            <Text style={styles.settingtext}>Number of Player: </Text>
+            <Text
+              style={[
+                styles.settingtext,
+                { marginTop: Platform.OS === "ios" ? 15 : 0 },
+              ]}
+            >
+              Number of Player:{" "}
+            </Text>
           </View>
           <View style={{ flex: 1 }}>
             {/* <DropDownPicker
@@ -110,6 +126,7 @@ const GameSettings = ({ navigation }) => {
               style={styles.onePicker}
               itemStyle={styles.onePickerItem}
             >
+              <Picker.Item label="5" value="5" />
               <Picker.Item label="1" value="1" />
               <Picker.Item label="2" value="2" />
               <Picker.Item label="3" value="3" />
@@ -129,6 +146,7 @@ const GameSettings = ({ navigation }) => {
               defaultValue="0.25"
               keyboardType="numeric"
               style={styles.textinput}
+              onChangeText={setpointRate}
             />
           </View>
         </View>
@@ -258,7 +276,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   onePickerItem: {
-    height: 100,
+    height: "150%",
     color: "#ff6347",
     width: 200,
     alignSelf: "center",

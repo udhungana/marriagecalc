@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { TextInput } from "react-native-gesture-handler";
-
 //import Assets from "./components/Assets";
 //import FirstScreen from "./FirstScreen";
 
@@ -18,17 +17,10 @@ import { TextInput } from "react-native-gesture-handler";
  *
  * This is the first splash scree showing pickbins logout. Timout for showing this screen is set to 2s.
  */
-const PlayerNames = ({ navigation }) => {
+const PlayerNames = ({ navigation, route }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "1", value: "1" },
-    { label: "2", value: "2" },
-    { label: "3", value: "3" },
-    { label: "4", value: "4" },
-    { label: "5", value: "5" },
-    { label: "6", value: "6" },
-  ]);
+  //const [playerNames, setPlayerNames] = useState([]);
 
   const [isEnabledFoul, setIsEnabledFoul] = useState(false);
   const toggleSwitchFoul = () =>
@@ -47,9 +39,38 @@ const PlayerNames = ({ navigation }) => {
   //     navigation.navigate("SignInScreen");
   //   }, 2000);
   // }, []);
+  // const { paramKey } = route.params;
+  // console.log(paramKey);
+  // const arr = [...Array(paramKey).keys()];
+  // console.log(arr);
+
+  // [...Array().keys()];
+  var selectedNumPlayers = route.params.paramKey;
+
+  const arr = [];
+  for (var i = 1; i <= selectedNumPlayers; i++) {
+    arr.push(i);
+  }
+
+  const playerNames = [
+    "player0",
+    "player1",
+    "player2",
+    "player3",
+    "player4",
+    "player5",
+    "player6",
+  ];
+  const addNames = (value, index) => {
+    playerNames[index] = value;
+  };
 
   const nextButtonPressed = () => {
-    navigation.navigate("InsertPoint");
+    console.log(playerNames);
+    navigation.navigate("InsertPoint", {
+      playerName: playerNames,
+      playerNum: selectedNumPlayers,
+    });
   };
 
   return (
@@ -75,15 +96,25 @@ const PlayerNames = ({ navigation }) => {
         <Text style={styles.toptext}>Game Setting</Text>
       </View> */}
       <View style={{ flex: 5, marginBottom: 10, marginTop: 50 }}>
-        <View style={{ flex: 1, flexDirection: "row" }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.settingtext}>PLAYER X: </Text>
+        {arr.map((elementInArray, index) => (
+          <View key={index + 1} style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.settingtext}>
+                PLAYER {"   "}
+                {index + 1}
+              </Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <TextInput
+                keyboardType="default"
+                style={styles.textinput}
+                onChangeText={(text) => addNames(text, index + 1)}
+              />
+            </View>
           </View>
-          <View style={{ flex: 1 }}>
-            <TextInput keyboardType="default" style={styles.textinput} />
-          </View>
-        </View>
+        ))}
       </View>
+
       <View
         style={{
           flex: 1,

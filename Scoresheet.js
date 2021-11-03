@@ -124,7 +124,7 @@ const Scoresheet = ({ navigation }) => {
       </View>
       <ScrollView
         contentContainerStyle={{
-          alignItems: "center",
+          alignItems: "flex-start",
           flexGrow: 1,
           minHeight: (screenHeight * 40) / 100,
         }}
@@ -141,7 +141,9 @@ const Scoresheet = ({ navigation }) => {
               width: 80,
             }}
           >
-            <Text style={{ color: "black" }}>{datum.Player}</Text>
+            <View>
+              <Text style={{ color: "black" }}>{datum.Player}</Text>
+            </View>
             {/* Edit these as they are your cells. You may even take parameters to display different data / react elements etc. */}
             {/* <View style={{ flex: 1, alignSelf: "stretch" }} />
             <View style={{ flex: 1, alignSelf: "stretch" }} />

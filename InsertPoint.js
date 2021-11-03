@@ -9,9 +9,11 @@ import {
   SafeAreaView,
   Dimensions,
   TextInput,
+  Platform,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Picker } from "@react-native-picker/picker";
+import PlayerNames from "./PlayerNames";
 
 //import Assets from "./components/Assets";
 //import FirstScreen from "./FirstScreen";
@@ -20,7 +22,7 @@ import { Picker } from "@react-native-picker/picker";
  *
  * This is the first splash scree showing pickbins logout. Timout for showing this screen is set to 2s.
  */
-const InsertPoint = ({ navigation }) => {
+const InsertPoint = ({ navigation, route }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -51,7 +53,19 @@ const InsertPoint = ({ navigation }) => {
 
   const [selectedChoice, setSelectedChoice] = useState();
 
+  var countRound = 1;
+
   let screenHeight = Dimensions.get("window").height;
+
+  const playerNames = route.params.playerName;
+  console.log(playerNames);
+
+  var selectedNumPlayers = route.params.playerNum;
+
+  // const arr = [];
+  // for (var i = 1; i <= selectedNumPlayers; i++) {
+  //   arr.push(i);
+  // }
 
   const saveButtonPressed = () => {
     navigation.navigate("Scoresheet");
@@ -81,23 +95,29 @@ const InsertPoint = ({ navigation }) => {
       </View> */}
       <View>
         <View style={{ flex: 1 }}>
-          <Text style={styles.roundNumber}>Round X: </Text>
+          <Text style={styles.roundNumber}>Round {countRound}: </Text>
         </View>
       </View>
 
-      <View style={{ flex: 1.5, marginBottom: 50 }}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <View style={{ flex: 1 }}>
-            <Text style={styles.settingtext}>PLAYER X: </Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            {/* <DropDownPicker
+      <View style={{ flex: 1, marginBottom: 50 }}>
+        {playerNames
+          .slice(1, selectedNumPlayers)
+          .map((elementInArray, index) => (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                alignItems: "flex-start",
+              }}
+              key={index + 1}
+            >
+              <View
+                style={{ flex: 1, padding: Platform.OS === "ios" ? 20 : 0 }}
+              >
+                <Text style={styles.playernametext}>{elementInArray} </Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                {/* <DropDownPicker
                 listMode="SCROLLVIEW"
                 placeholder="Unseen"
                 open={open}
@@ -111,29 +131,32 @@ const InsertPoint = ({ navigation }) => {
                 showTickIcon={false}
               /> */}
 
-            <Picker
-              selectedValue={selectedChoice}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedChoice(itemValue)
-              }
-              style={styles.onePicker}
-              itemStyle={styles.onePickerItem}
-            >
-              <Picker.Item label="Unseen" value="Unseen" />
-              <Picker.Item label="Seen" value="Seen" />
-              <Picker.Item label="Winner" value="Winner" />
-              <Picker.Item label="Doublee" value="Doublee" />
-              <Picker.Item label="Foul" value="Foul" />
-            </Picker>
-          </View>
-          <View style={{ flex: 1 }}>
-            <TextInput
-              keyboardType="numeric"
-              style={styles.textinput}
-              placeholder="Point"
-            />
-          </View>
-        </View>
+                <Picker
+                  selectedValue={selectedChoice}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setSelectedChoice(itemValue)
+                  }
+                  style={styles.onePicker}
+                  itemStyle={styles.onePickerItem}
+                >
+                  <Picker.Item label="Unseen" value="Unseen" />
+                  <Picker.Item label="Seen" value="Seen" />
+                  <Picker.Item label="Winner" value="Winner" />
+                  <Picker.Item label="Doublee" value="Doublee" />
+                  <Picker.Item label="Foul" value="Foul" />
+                </Picker>
+              </View>
+              <View
+                style={{ flex: 1, padding: Platform.OS === "ios" ? 20 : 0 }}
+              >
+                <TextInput
+                  keyboardType="numeric"
+                  style={styles.textinput}
+                  placeholder="Point"
+                />
+              </View>
+            </View>
+          ))}
       </View>
       <View
         style={{
@@ -182,6 +205,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
   },
+  playernametext: {
+    fontSize: 14,
+    fontWeight: "bold",
+    textAlign: "left",
+    color: "black",
+    alignItems: "center",
+    padding: 20,
+    textTransform: "uppercase",
+  },
   roundNumber: {
     fontSize: 20,
     fontWeight: "bold",
@@ -219,7 +251,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   textinput: {
-    height: 50,
+    height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
@@ -228,7 +260,7 @@ const styles = StyleSheet.create({
     width: 100,
   },
   onePicker: {
-    height: 88,
+    height: 40,
     width: 150,
     alignSelf: "center",
     color: "#ff6347",
