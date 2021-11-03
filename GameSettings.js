@@ -32,17 +32,16 @@ const GameSettings = ({ navigation }) => {
     { label: "6", value: "6" },
   ]);
 
-  const [isEnabledFoul, setIsEnabledFoul] = useState(false);
+  const [isEnabledFoul, setIsEnabledFoul] = useState(true);
   const toggleSwitchFoul = () =>
     setIsEnabledFoul((previousState) => !previousState);
 
-  const [isEnabledDoublee, setIsEnabledDoublee] = useState(false);
+  const [isEnabledDoublee, setIsEnabledDoublee] = useState(true);
   const toggleSwitchDoublee = () =>
     setIsEnabledDoublee((previousState) => !previousState);
 
-  const [playersNum, setplayersNum] = useState();
-  const [selectedNumPlayers, setSelectedNumPlayers] = useState();
-  const [pointRate, setpointRate] = useState();
+  const [selectedNumPlayers, setSelectedNumPlayers] = useState(5);
+  const [pointRate, setpointRate] = useState(0.25);
   console.log(pointRate);
   console.log(selectedNumPlayers);
 
@@ -91,7 +90,7 @@ const GameSettings = ({ navigation }) => {
             flex: 1,
             flexDirection: "row",
             alignContent: "center",
-            marginBottom: 20,
+            marginBottom: Platform.OS === "ios" ? 30 : 0,
           }}
         >
           <View style={{ flex: 1 }}>

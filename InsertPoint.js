@@ -60,7 +60,9 @@ const InsertPoint = ({ navigation, route }) => {
   const playerNames = route.params.playerName;
   console.log(playerNames);
 
-  var selectedNumPlayers = route.params.playerNum;
+  const selectedNumPlayersplusone = Number(route.params.playerNum) + 1;
+
+  console.log(selectedNumPlayersplusone);
 
   // const arr = [];
   // for (var i = 1; i <= selectedNumPlayers; i++) {
@@ -99,9 +101,9 @@ const InsertPoint = ({ navigation, route }) => {
         </View>
       </View>
 
-      <View style={{ flex: 1, marginBottom: 50 }}>
+      <ScrollView style={{ flex: 1, marginBottom: 50 }}>
         {playerNames
-          .slice(1, selectedNumPlayers)
+          .slice(1, selectedNumPlayersplusone)
           .map((elementInArray, index) => (
             <View
               style={{
@@ -157,7 +159,7 @@ const InsertPoint = ({ navigation, route }) => {
               </View>
             </View>
           ))}
-      </View>
+      </ScrollView>
       <View
         style={{
           flex: 1,
