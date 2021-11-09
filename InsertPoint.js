@@ -51,7 +51,16 @@ const InsertPoint = ({ navigation, route }) => {
   //   }, 2000);
   // }, []);
 
-  const [selectedChoice, setSelectedChoice] = useState();
+  const [playerData, setPlayerData] = useState([]);
+  const selectedChoice = [
+    "unseen",
+    "unseen",
+    "unseen",
+    "unseen",
+    "unseen",
+    "unseen",
+    "unseen",
+  ];
 
   var countRound = 1;
 
@@ -59,6 +68,9 @@ const InsertPoint = ({ navigation, route }) => {
 
   const playerNames = route.params.playerName;
   console.log(playerNames);
+
+  setPlayerData(route.params.pData);
+  console.log(playerData);
 
   const selectedNumPlayersplusone = Number(route.params.playerNum) + 1;
 
@@ -68,6 +80,15 @@ const InsertPoint = ({ navigation, route }) => {
   // for (var i = 1; i <= selectedNumPlayers; i++) {
   //   arr.push(i);
   // }
+
+  const changeRoundStatus = (value, index) => {
+    let newArr = [...selectedChoice];
+    console.log(newArr);
+    newArr[index - 1] = value;
+    setSelectedChoice(newArr);
+  };
+
+  // console.log(selectedChoice);
 
   const saveButtonPressed = () => {
     navigation.navigate("Scoresheet");
@@ -134,9 +155,9 @@ const InsertPoint = ({ navigation, route }) => {
               /> */}
 
                 <Picker
-                  selectedValue={selectedChoice}
+                  selectedValue={selectedChoice[index - 1]}
                   onValueChange={(itemValue, itemIndex) =>
-                    setSelectedChoice(itemValue)
+                    changeRoundStatus(itemValue, itemIndex)
                   }
                   style={styles.onePicker}
                   itemStyle={styles.onePickerItem}

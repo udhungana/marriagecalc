@@ -20,7 +20,44 @@ import { TextInput } from "react-native-gesture-handler";
 const PlayerNames = ({ navigation, route }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  //const [playerNames, setPlayerNames] = useState([]);
+  const [playerData, setPlayerData] = useState([
+    {
+      id: 1,
+      name: "Player 1",
+      status: "unseen",
+      point: 0,
+    },
+    {
+      id: 2,
+      name: "Player 2",
+      status: "unseen",
+      point: 0,
+    },
+    {
+      id: 3,
+      name: "Player 3",
+      status: "unseen",
+      point: 0,
+    },
+    {
+      id: 4,
+      name: "Player 4",
+      status: "unseen",
+      point: 0,
+    },
+    {
+      id: 5,
+      name: "Player 5",
+      status: "unseen",
+      point: 0,
+    },
+    {
+      id: 6,
+      name: "Player 6",
+      status: "unseen",
+      point: 0,
+    },
+  ]);
 
   const [isEnabledFoul, setIsEnabledFoul] = useState(false);
   const toggleSwitchFoul = () =>
@@ -53,16 +90,19 @@ const PlayerNames = ({ navigation, route }) => {
   }
 
   const playerNames = [
-    "player0",
-    "player1",
-    "player2",
-    "player3",
-    "player4",
-    "player5",
-    "player6",
+    "player 0",
+    "player 1",
+    "player 2",
+    "player 3",
+    "player 4",
+    "player 5",
+    "player 6",
   ];
   const addNames = (value, index) => {
-    playerNames[index] = value;
+    let newArr = [...playerData];
+    newArr[index]["name"] = value;
+    setPlayerData(newArr);
+    console.log(playerData);
   };
 
   const nextButtonPressed = () => {
@@ -70,6 +110,7 @@ const PlayerNames = ({ navigation, route }) => {
     navigation.navigate("InsertPoint", {
       playerName: playerNames,
       playerNum: selectedNumPlayers,
+      pData: playerData,
     });
   };
 
@@ -97,7 +138,7 @@ const PlayerNames = ({ navigation, route }) => {
       </View> */}
       <View style={{ flex: 5, marginBottom: 10, marginTop: 50 }}>
         {arr.map((elementInArray, index) => (
-          <View key={index + 1} style={{ flex: 1, flexDirection: "row" }}>
+          <View key={index} style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1 }}>
               <Text style={styles.settingtext}>
                 PLAYER {"   "}
@@ -108,7 +149,7 @@ const PlayerNames = ({ navigation, route }) => {
               <TextInput
                 keyboardType="default"
                 style={styles.textinput}
-                onChangeText={(text) => addNames(text, index + 1)}
+                onChangeText={(text) => addNames(text, index)}
               />
             </View>
           </View>
