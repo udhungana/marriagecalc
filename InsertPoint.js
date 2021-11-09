@@ -66,15 +66,21 @@ const InsertPoint = ({ navigation, route }) => {
 
   let screenHeight = Dimensions.get("window").height;
 
-  const playerNames = route.params.playerName;
-  console.log(playerNames);
+  // const playerNames = route.params.playerName;
+  useEffect(() => {
+    // let pdataarr = [...route.params.pData];
+    // // console.log(playerNames);
 
-  setPlayerData(route.params.pData);
+    // // setPlayerData(route.params.pData);
+    // console.log("here");
+    //console.log(pdataarr);
+    setPlayerData(route.params.pData);
+  }, []);
+
+  const selectedNumPlayers = route.params.playerNum;
+  console.log("here");
   console.log(playerData);
-
-  const selectedNumPlayersplusone = Number(route.params.playerNum) + 1;
-
-  console.log(selectedNumPlayersplusone);
+  // console.log(selectedNumPlayersplusone);
 
   // const arr = [];
   // for (var i = 1; i <= selectedNumPlayers; i++) {
@@ -82,10 +88,10 @@ const InsertPoint = ({ navigation, route }) => {
   // }
 
   const changeRoundStatus = (value, index) => {
-    let newArr = [...selectedChoice];
+    let newArr = [...playerData];
     console.log(newArr);
-    newArr[index - 1] = value;
-    setSelectedChoice(newArr);
+    newArr[index]["status"] = value;
+    setPlayerData(newArr);
   };
 
   // console.log(selectedChoice);
@@ -123,63 +129,43 @@ const InsertPoint = ({ navigation, route }) => {
       </View>
 
       <ScrollView style={{ flex: 1, marginBottom: 50 }}>
-        {playerNames
-          .slice(1, selectedNumPlayersplusone)
-          .map((elementInArray, index) => (
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                alignItems: "flex-start",
-              }}
-              key={index + 1}
-            >
-              <View
-                style={{ flex: 1, padding: Platform.OS === "ios" ? 20 : 0 }}
-              >
-                <Text style={styles.playernametext}>{elementInArray} </Text>
-              </View>
-              <View style={{ flex: 1 }}>
-                {/* <DropDownPicker
-                listMode="SCROLLVIEW"
-                placeholder="Unseen"
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
-                maxHeight={400}
-                containerStyle={styles.Dropdowntext}
-                showTickIcon={false}
-              /> */}
-
-                <Picker
-                  selectedValue={selectedChoice[index - 1]}
-                  onValueChange={(itemValue, itemIndex) =>
-                    changeRoundStatus(itemValue, itemIndex)
-                  }
-                  style={styles.onePicker}
-                  itemStyle={styles.onePickerItem}
-                >
-                  <Picker.Item label="Unseen" value="Unseen" />
-                  <Picker.Item label="Seen" value="Seen" />
-                  <Picker.Item label="Winner" value="Winner" />
-                  <Picker.Item label="Doublee" value="Doublee" />
-                  <Picker.Item label="Foul" value="Foul" />
-                </Picker>
-              </View>
-              <View
-                style={{ flex: 1, padding: Platform.OS === "ios" ? 20 : 0 }}
-              >
-                <TextInput
-                  keyboardType="numeric"
-                  style={styles.textinput}
-                  placeholder="Point"
-                />
-              </View>
+        {playerData.slice(0, selectedNumPlayers).map((data, index) => (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              alignItems: "flex-start",
+            }}
+            key={index}
+          >
+            <View style={{ flex: 1, padding: Platform.OS === "ios" ? 20 : 0 }}>
+              <Text style={styles.playernametext}>{data.name} </Text>
             </View>
-          ))}
+            <View style={{ flex: 1 }}>
+              <Picker
+                selectedValue={data.status}
+                onValueChange={(itemValue, itemIndex) =>
+                  changeRoundStatus(itemValue, index)
+                }
+                style={styles.onePicker}
+                itemStyle={styles.onePickerItem}
+              >
+                <Picker.Item label="Unseen" value="Unseen" />
+                <Picker.Item label="Seen" value="Seen" />
+                <Picker.Item label="Winner" value="Winner" />
+                <Picker.Item label="Doublee" value="Doublee" />
+                <Picker.Item label="Foul" value="Foul" />
+              </Picker>
+            </View>
+            <View style={{ flex: 1, padding: Platform.OS === "ios" ? 20 : 0 }}>
+              <TextInput
+                keyboardType="numeric"
+                style={styles.textinput}
+                placeholder="Point"
+              />
+            </View>
+          </View>
+        ))}
       </ScrollView>
       <View
         style={{
