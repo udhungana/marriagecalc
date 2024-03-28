@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
     textAlign: "center",
-    color: "purple",
+    color: "navy",
     padding: 20,
   },
   bottomtext: {
