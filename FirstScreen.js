@@ -69,17 +69,17 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   toptext: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
-    color: "navy",
+    color: "red",
     padding: 20,
   },
   bottomtext: {
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
-    color: "white",
+    color: "pink",
     padding: 30,
   },
   buttons: {
