@@ -69,10 +69,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   toptext: {
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: "bold",
     textAlign: "center",
-    color: "white",
+    color: "purple",
     padding: 20,
   },
   bottomtext: {
