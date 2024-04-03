@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     padding: 5,
-    backgroundColor: "white",
+    backgroundColor: "gray",
   },
   toptext: {
     fontSize: 20,
