@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   bottomtext: {
-    fontSize: 30,
+    fontSize: 22,
     fontWeight: "bold",
     textAlign: "center",
-    color: "white",
+    color: "gray",
     padding: 30,
   },
   buttons: {
