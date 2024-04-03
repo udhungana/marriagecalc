@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   bottomtext: {
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
     color: "gray",
